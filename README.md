@@ -7,7 +7,7 @@
     For Python: Ensure Python is installed, and necessary libraries are installed via pip.
     
   Steps to Run the Project:
-  1. Clone or download the project files from the link below.
+  1. Clone or download the project files from the link.
   (https://drive.google.com/drive/folders/13Pa0qNaaKjX8u8zNDTI6coicd7f9sP5n?usp=sharing)
   2. Open the project folder in VS Code by navigating to File > Open Folder and selecting the folder containing the project files.
   3. Ensure all necessary dependencies or libraries are installed:
