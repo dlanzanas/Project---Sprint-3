@@ -13,5 +13,5 @@
   3. Ensure all necessary dependencies or libraries are installed:
       For Python: Use pip install -r requirements.txt if a requirements.txt file is provided.
   4. Open the appropriate file that contains the main code to run the program.
-  5. Run the code:
+  5. Run the code
 
