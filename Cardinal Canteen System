@@ -3,6 +3,7 @@ from tkinter import Tk, Canvas, Entry, Button, PhotoImage, messagebox
 from pathlib import Path
 
 #-------------------------------Utility Functions-------------------------------#
+
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\Rupert Jay Laureano\Documents\build\assets\frame0")
 
