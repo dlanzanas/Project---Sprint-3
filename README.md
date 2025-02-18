@@ -1,7 +1,7 @@
 #This project is still under development, and some features or components may not function as intended or might be incomplete. However, you can run the existing code to explore its current state and functionalities.
 
   Prerequisites:
-  Visual Studio Code (VS Code) installed on your system. 
+  Visual Studio Code (VS CODE) installed on your system. 
   Tkinter must also be installed on your VS Code.
   Required dependencies or extensions for the programming language used
     For Python: Ensure Python is installed, and necessary libraries are installed via pip.
