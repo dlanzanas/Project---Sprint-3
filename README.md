@@ -1,4 +1,4 @@
-#This project is still under development, and some features or components may not function as intended or might be incomplete. However, you can run the existing code to explore its current state and functionalities.
+#This project is still under development, and some features or components may not function as intended or might be incomplete. However, you can run the existing code to explore its current state and functionalities. 
 
   Prerequisites:
   Visual Studio Code (VS CODE) installed on your system. 
