@@ -2,6 +2,7 @@ import sqlite3
 from tkinter import Tk, Canvas, Entry, Button, PhotoImage, messagebox
 from pathlib import Path
 
+
 #-------------------------------Utility Functions-------------------------------#
 
 OUTPUT_PATH = Path(__file__).parent
@@ -43,6 +44,7 @@ def create_database():
     conn.close()
 
 #-------------------------------Registration Interface-------------------------------#
+
 def register_user():
     fullname = entry_1.get()
     username = entry_2.get()
