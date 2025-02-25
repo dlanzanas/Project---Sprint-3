@@ -43,7 +43,7 @@ def create_database():
     conn.commit()
     conn.close()
 
-#-------------------------------Registration Interface-------------------------------#
+#----------------------Registration Interface---------------------------------#
 
 def register_user():
     fullname = entry_1.get()
