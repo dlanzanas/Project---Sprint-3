@@ -1546,7 +1546,7 @@ def payment_interface(order_list):
         image=button_image_21,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: [window.destroy(), order_payment_history_interface()],
+        command=lambda: print("button_21 clicked"),
         relief="flat"
     )
     button_21.place(
@@ -1618,8 +1618,6 @@ def process_payment(total_cost, order_list):
     Change: P{change}
     Pickup Time: {pickup_time}
     """
-    # Save order and payment details to the database
-    save_order_payment_to_database(order_id, "\n".join(order_list), total_cost, payment_amount, change, pickup_time)
 
     # Define the path to save the receipt
     documents_path = r"C:\Users\Rupert Jay Laureano\Documents\build"
@@ -1632,17 +1630,7 @@ def process_payment(total_cost, order_list):
         # Show success message
         messagebox.showinfo("Success", f"Payment successful! Thank you for your order.\n\nOrder ID: {order_id}")
         window.destroy()  # Close the payment interface
-
-#-------------------------------Order and Payment History Database Setup-------------------------------#
-def create_order_payment_database():
-    conn = sqlite3.connect('order_payment_database.db')
-    c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS order_payment_history
-                 (order_id TEXT, order_list TEXT, total_cost REAL, payment_amount REAL, change REAL, pickup_time TEXT, timestamp TEXT)''')
-    conn.commit()
-    conn.close()
-
-#-------------------------------Order and Payment History Interface-------------------------------#
+#------------------------Order and Payment History Interface------------------------#
 def order_payment_history_interface():
     global window
     window = Tk()
@@ -1673,72 +1661,6 @@ def order_payment_history_interface():
     canvas.create_rectangle(23.0, 151.0, 983.0, 181.0, fill="#FAEECA", outline="")
     canvas.create_text(32.0, 149.0, anchor="nw", text="ORDER AND PAYMENT HISTORY", fill="#000000", font=("InknutAntiqua Bold", 18 * -1))
 
-    # Fetch order and payment history from the database
-    conn = sqlite3.connect('order_payment_database.db')
-    c = conn.cursor()
-    c.execute("SELECT * FROM order_payment_history ORDER BY timestamp DESC")
-    history = c.fetchall()
-    conn.close()
-
-    # Display area for history
-    y_offset = 200
-    for record in history:
-        order_id, order_list, total_cost, payment_amount, change, pickup_time, timestamp = record
-
-        # Display order ID and timestamp
-        canvas.create_text(50.0, y_offset, anchor="nw", text=f"Order ID: {order_id}", fill="#000000", font=("Inter", 12 * -1))
-        canvas.create_text(300.0, y_offset, anchor="nw", text=f"Date: {timestamp}", fill="#000000", font=("Inter", 12 * -1))
-
-        # Display order list
-        canvas.create_text(50.0, y_offset + 30, anchor="nw", text="Order List:", fill="#000000", font=("Inter", 12 * -1))
-        for item in order_list.split("\n"):
-            canvas.create_text(70.0, y_offset + 50, anchor="nw", text=f"- {item}", fill="#000000", font=("Inter", 12 * -1))
-            y_offset += 20
-
-        # Display payment details
-        canvas.create_text(50.0, y_offset + 50, anchor="nw", text=f"Total Cost: P{total_cost}", fill="#000000", font=("Inter", 12 * -1))
-        canvas.create_text(50.0, y_offset + 70, anchor="nw", text=f"Payment Amount: P{payment_amount}", fill="#000000", font=("Inter", 12 * -1))
-        canvas.create_text(50.0, y_offset + 90, anchor="nw", text=f"Change: P{change}", fill="#000000", font=("Inter", 12 * -1))
-        canvas.create_text(50.0, y_offset + 110, anchor="nw", text=f"Pickup Time: {pickup_time}", fill="#000000", font=("Inter", 12 * -1))
-
-        y_offset += 140  # Space between records
-
-    # Back button
-    button_image_19 = PhotoImage(file=relative_to_assets("button_19.png"))
-    button_19 = Button(
-        image=button_image_19,
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: [window.destroy(), customer_interface()],  # Go back to customer interface
-        relief="flat"
-    )
-    button_19.place(x=882.0, y=15.0, width=95.0, height=41.0)
-
-    button_image_hover_19 = PhotoImage(file=relative_to_assets("button_hover_19.png"))
-
-    def button_19_hover(e):
-        button_19.config(image=button_image_hover_19)
-
-    def button_19_leave(e):
-        button_19.config(image=button_image_19)
-
-    button_19.bind('<Enter>', button_19_hover)
-    button_19.bind('<Leave>', button_19_leave)
-
-    window.resizable(False, False)
-    window.mainloop()
-
-#-------------------------------Save Order and Payment to Database-------------------------------#
-def save_order_payment_to_database(order_id, order_list, total_cost, payment_amount, change, pickup_time):
-    conn = sqlite3.connect('order_payment_database.db')
-    c = conn.cursor()
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    c.execute("INSERT INTO order_payment_history (order_id, order_list, total_cost, payment_amount, change, pickup_time, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?)",
-              (order_id, order_list, total_cost, payment_amount, change, pickup_time, timestamp))
-    conn.commit()
-    conn.close()
-
 # Start the application
 create_database()
-create_order_payment_database()
 registration_interface()
