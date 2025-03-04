@@ -46,6 +46,7 @@ def create_database():
     conn.close()
 
 #-------------------------------Registration Interface-------------------------------#
+
 def register_user():
     fullname = entry_1.get()
     username = entry_2.get()
