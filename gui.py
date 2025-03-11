@@ -5,7 +5,7 @@ import os
 import random
 import datetime
 
-#-------------------------------Utility Functions-------------------------------#
+#-------------------------------Utility Functions------------------------------#
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\Rupert Jay Laureano\Documents\build\assets\frame0")
