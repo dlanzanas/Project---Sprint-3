@@ -37,6 +37,7 @@ def create_hover_button(x, y, width, height, normal_image_path, hover_image_path
     button.bind("<Leave>", on_leave)
 
 #-------------------------------Database Setup-------------------------------#
+
 def create_database():
     conn = sqlite3.connect('user_database.db')
     c = conn.cursor()
